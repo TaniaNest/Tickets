@@ -15,7 +15,8 @@ public class Service {
     private String line;
 
     public boolean methodMoscow(Model tickets) {
-        if (number(tickets)[0] + number(tickets)[1] + number(tickets)[2] == number(tickets)[3] + number(tickets)[4] + number(tickets)[5]) {
+        int[] num = number(tickets);
+        if (num[0] + num[1] + num[2] == num[3] + num[4] + num[5]) {
             return true;
         }
         return false;
@@ -39,14 +40,17 @@ public class Service {
     }
 
     public int[] number(Model tickets) {
-        int number1 = tickets.getTickets() / 100000;
-        int number2 = (tickets.getTickets() % 100000) / 10000;
-        int number3 = (tickets.getTickets() % 10000) / 1000;
-        int number4 = (tickets.getTickets() % 1000) / 100;
-        int number5 = (tickets.getTickets() % 100) / 10;
-        int number6 = tickets.getTickets() % 10;
-        int[] arr = {number1, number2, number3, number4, number5, number6};
-        return arr;
+        int[] arr = new int[6];
+        int index = 0;
+        int number = tickets.getTickets();
+        do {
+            arr[index] = number % 10;
+            number /= 10;
+        }
+        while (++index < 6);
+        {
+            return arr;
+        }
     }
 
     public void addNumbers(String path) throws IOException {
