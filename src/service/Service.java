@@ -15,14 +15,18 @@ public class Service {
     private String line;
 
     public boolean methodMoscow(Model tickets) {
-        int countOne=0;
-        int countTwo=0;
-        for (int i = 0; i <= number(tickets).length-1; i++) {
-            if(i<(number(tickets).length/2)){countOne+=number(tickets)[i];}
-            else{countTwo+=number(tickets)[i];}
+        int countOne = 0;
+        int countTwo = 0;
+        for (int i = 0; i <= number(tickets).length - 1; i++) {
+            if (i < (number(tickets).length / 2)) {
+                countOne += number(tickets)[i];
+            } else {
+                countTwo += number(tickets)[i];
+            }
         }
-        if(countOne==countTwo){return true;}
-        else return false;
+        if (countOne == countTwo) {
+            return true;
+        } else return false;
     }
 
     public boolean methodPeter(Model tickets) {
