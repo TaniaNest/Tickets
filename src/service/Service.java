@@ -18,7 +18,7 @@ public class Service {
         int countOne=0;
         int countTwo=0;
         for (int i = 0; i <= number(tickets).length-1; i++) {
-            if(i<3){countOne+=number(tickets)[i];}
+            if(i<(number(tickets).length/2)){countOne+=number(tickets)[i];}
             else{countTwo+=number(tickets)[i];}
         }
         if(countOne==countTwo){return true;}
