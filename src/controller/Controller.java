@@ -4,6 +4,7 @@ import model.Model;
 import service.Service;
 import util.Info;
 import util.Input;
+import util.Validator;
 
 import java.io.*;
 
@@ -12,12 +13,29 @@ public class Controller {
     private Input input = new Input();
     private Info info = new Info();
     private Service service = new Service();
+    private Validator validator = new Validator();
 
-
+    private String path;
 
     public void run() throws IOException {
-        service.addNumbers(getPath());
+
+        if (getTestFile()) {
+            service.addNumbers(path);
+        }
         choice(getMethod());
+
+    }
+
+    public boolean getTestFile() {
+
+        while (true) {
+            path = getPath();
+            if (validator.fileExist(path)) {
+                return true;
+            } else {
+                info.fileError();
+            }
+        }
 
     }
 
@@ -30,7 +48,12 @@ public class Controller {
     public int getMethod() {
         info.getChoose();
         int method = input.getChose();
+        while (!validator.isPositiveNumber(method)) {
+            info.getChoose();
+            method = new Input().getChose();
+        }
         return method;
+
     }
 
 

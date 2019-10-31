@@ -7,6 +7,14 @@ public class Info {
         System.out.print("Input path to file: ");
     }
 
+    public void fileError() {
+        System.out.println("File don`t exist");
+    }
+
+    public void emptyFile() {
+        System.out.println("File is empty");
+    }
+
     public void getCount(String param, int num) {
 
         System.out.print("Amount of lucky tickets by method " + param + ": " + num);

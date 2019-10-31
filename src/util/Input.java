@@ -1,5 +1,6 @@
 package util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
@@ -12,9 +13,14 @@ public class Input {
     }
 
     public int getChose() {
-
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
     }
+
 
     public String getAnswer() {
         return scanner.next();
