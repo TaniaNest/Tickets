@@ -13,9 +13,12 @@ public class Controller {
     private Info info = new Info();
     private Service service = new Service();
 
+
+
     public void run() throws IOException {
         service.addNumbers(getPath());
-        choice();
+        choice(getMethod());
+
     }
 
     public String getPath() {
@@ -24,15 +27,20 @@ public class Controller {
         return path;
     }
 
-    public void choice() {
+    public int getMethod() {
         info.getChoose();
         int method = input.getChose();
+        return method;
+    }
+
+
+    public void choice(int method) {
         switch (method) {
             case 1:
-                info.getCount("Moscow", service.countTicketsMoscow());
+                info.getCount("Moscow", service.countTickets(method));
                 break;
             case 2:
-                info.getCount("Peter", service.countTicketsPeter());
+                info.getCount("Peter", service.countTickets(method));
                 break;
             default:
                 repeat();
@@ -44,7 +52,7 @@ public class Controller {
         info.getRequest();
         exit = input.getAnswer();
         if (exit.equals("y") || exit.equals("yes")) {
-            choice();
+            choice(getMethod());
         } else {
             System.exit(0);
         }

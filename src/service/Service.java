@@ -12,7 +12,39 @@ import java.util.List;
 public class Service {
 
     private List<Integer> list = new ArrayList<Integer>();
-    private String line;
+
+    public void addNumbers(String path) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(new File(path)));
+        String line;
+        while ((line = br.readLine()) != null) {
+
+            String[] h = line.split("\n");
+            for (int j = 0; j < h.length; j++) {
+                int val = Integer.parseInt(h[j]);
+                list.add(val);
+            }
+        }
+        br.close();
+    }
+
+    public int countTickets(int choice) {
+        int sum = 0;
+        for (int i = 0; i <= list.size() - 1; i++) {
+            Model num = new Model(list.get(i));
+            if (choice == 1) {
+                if (methodMoscow(num)) {
+                    sum++;
+                }
+            }
+            if (choice == 2) {
+                if (methodPeter(num)) {
+                    sum++;
+                }
+            }
+        }
+        return sum;
+
+    }
 
     public boolean methodMoscow(Model tickets) {
         int countOne = 0;
@@ -61,38 +93,6 @@ public class Service {
         }
     }
 
-    public void addNumbers(String path) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(new File(path)));
-        while ((line = br.readLine()) != null) {
 
-            String[] h = line.split("\n");
-            for (int j = 0; j < h.length; j++) {
-                int val = Integer.parseInt(h[j]);
-                list.add(val);
-            }
-        }
-        br.close();
-    }
 
-    public int countTicketsMoscow() {
-        int sum = 0;
-        for (int i = 0; i <= list.size() - 1; i++) {
-            Model num = new Model(list.get(i));
-            if (methodMoscow(num)) {
-                sum++;
-            }
-        }
-        return sum;
-    }
-
-    public int countTicketsPeter() {
-        int sum = 0;
-        for (int i = 0; i <= list.size() - 1; i++) {
-            Model num = new Model(list.get(i));
-            if (methodPeter(num)) {
-                sum++;
-            }
-        }
-        return sum;
-    }
 }
